@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import CharacterContainer from './components/CharacterContainer'
 
 export default class App extends Component {
+
   state = {
     characters: '',
     quotes: '',
@@ -16,29 +17,29 @@ export default class App extends Component {
   componentDidMount() {
     fetch(this.charactersURL)
       .then(resp => resp.json())
-      .then(characters => characters.map(character => {
-        return this.setState({ characters })
-      }))
+      .then(characters => this.setState({ characters })
+      )
 
     fetch(this.quotesURL)
       .then(resp => resp.json())
-      .then(quotes => quotes.map(quote => {
-        return this.setState({ quotes })
-      }))
+      .then(quotes => this.setState({ quotes })
+      )
 
     fetch(this.episodesURL)
       .then(resp => resp.json())
-      .then(episodes => episodes.map(episode => {
-        return this.setState({ episodes })
-      }))
+      .then(episodes => this.setState({ episodes })
+      )
   }
 
 
   render() {
+
+    console.log('hi', this.state)
+
     return (
       <div className="App">
-        <h1>The Office</h1>
-        <CharacterContainer characters={this.state.characters} quotes={this.state.quotes} episodes={this.state.episodes} />
+        <h1 className='header'>The Office</h1>
+        <CharacterContainer key={this.state.characters} characters={this.state.characters} quotes={this.state.quotes} episodes={this.state.episodes} />
       </div>
     )
   }
